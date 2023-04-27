@@ -6,9 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="./frontend/assets/favicon/twitter.ico" />
-    <title>Jobber</title>
+    <link rel="stylesheet" href="./frontend/assets/css/style.css">
+    <title>Jobber ! Ca se passe ici ! | Jobber</title>
 </head>
 <body>
-
+<section class="main-page">
+    <div class="left">Left</div>
+    <div class="right">Right</div>
+    <footer aria-label="Footer" class="main-page-footer">Footer</footer>
+</section>
 </body>
 </html>
