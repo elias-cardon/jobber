@@ -1,18 +1,22 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body{
+html, body {
     height: 100%;
 }
 
-html{
+html {
     font-size: 62.5%;
 }
 
-section.main-page{
+a{
+    text-decoration: none;
+}
+
+section.main-page {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr;
@@ -28,15 +32,102 @@ section.main-page{
     width: 100%;
     position: relative;
 }
+
 .p-center {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
+
 .left svg.left-content-icon {
     fill: #fff;
     width: 90%;
     max-height: 380px;
     height: 60%;
+}
+
+.right {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    padding: 20px;
+    min-width: 45vw;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-width: 437px;
+    max-width: 760px;
+    height: 100%;
+    width: 100%;
+}
+
+.right-side-wrapper{
+    padding-bottom: 12px;
+}
+
+.right-side-wrapper svg{
+    fill: rgb(29,161,242);
+}
+
+.right-middle-content{
+    flex: 1;
+}
+
+.right h2.middle-heading{
+    font-size: 75px;
+    font-weight: 900;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    letter-spacing: 3px;
+    line-height: 50px;
+    overflow-wrap: break-word;
+    color: rgb(15,20,25);
+}
+
+.right .right-middle-content h5{
+    font-size: 30px;
+    margin-bottom: 32px;
+    font-weight: 700;
+    line-height: 1.3125;
+    overflow-wrap: break-word;
+    color: rgb(15,20,25);
+}
+
+.right-middle-content a.btn-link{
+    display: block;
+    min-width: calc(77.28px);
+    min-height: 48px;
+    max-width: 380px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 13px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 9999px;
+}
+
+.right-middle-content .sign-up-btn{
+    background-color: rgb(29,161,242);
+    color: #fff;
+    border: 0.1rem solid rgb(0,0,0,0);
+    transition: background-color 0.3s;
+}
+
+.right-middle-content .sign-up-btn:hover{
+    background-color: rgb(29,145,218);
+}
+
+.right-middle-content .log-in-btn{
+    background-color: #fff;
+    color: rgb(29,161,242);
+    border: 0.1rem solid rgb(29,161,242);
+    transition: background-color 0.3s;
+}
+
+.right-middle-content .log-in-btn:hover{
+    background-color: rgba(29,161,242,0.1);
 }
