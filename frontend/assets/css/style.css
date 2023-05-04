@@ -131,3 +131,21 @@ section.main-page {
 .right-middle-content .log-in-btn:hover{
     background-color: rgba(29,161,242,0.1);
 }
+
+footer.main-page-footer{
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    padding: 15px 16px;
+}
+
+.main-page-footer nav{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-page-footer nav a{
+    font-size: 16px;
+    padding-right: 16px;
+    line-height: calc(19.6875px);
+}
