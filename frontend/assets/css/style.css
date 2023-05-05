@@ -148,4 +148,16 @@ footer.main-page-footer{
     font-size: 16px;
     padding-right: 16px;
     line-height: calc(19.6875px);
+    color : rgb(91,112,131);
+    margin-bottom: 1rem;
+}
+
+.main-page-footer nav a:hover{
+    text-decoration: underline;
+}
+
+.main-page-footer nav span{
+    font-size: 16px;
+    line-height: calc(19.6875px);
+    color : rgb(91,112,131);
 }
