@@ -6,7 +6,7 @@
         <ul>
             <li>
                 <a href="index.php">
-                    <i class="fa fa-twitter"></i>
+                    <i class="fab fa-twitter"></i>
                     Accueil
                 </a>
             </li>
