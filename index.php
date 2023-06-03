@@ -1,3 +1,4 @@
+<?php require_once './backend/config.php';?>
 <?php require_once './backend/shared/header.php';?>
 <body>
 <section class="main-page">
