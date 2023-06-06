@@ -1,12 +1,22 @@
 <?php
-$servername = "localhost";
-$username = "tweety";
-$password = "password";
+define("DB_HOST", "localhost");
+define("DB_NAME", "jobber");
+define("DB_USER", "tweety");
+define("DB_PASS", "password");
 
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=jobber",$username,$password);
+$public_end = strpos($_SERVER['SCRIPT_NAME'], "/frontend")+8;
+$doc_root=substr($_SERVER['SCRIPT_NAME'],0,$public_end);
+
+define("WWW_ROOT", $doc_root);
+
+//$servername = "localhost";
+//$username = "tweety";
+//$password = "password";
+
+//try {
+//    $pdo = new PDO("mysql:host=$servername;dbname=jobber",$username,$password);
     // set the pdo error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connexion échouée: ".$e->getMessage();
-}
+//    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//} catch (PDOException $e) {
+//    echo "Connexion échouée: ".$e->getMessage();
+//}
