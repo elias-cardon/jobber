@@ -1,5 +1,4 @@
 <?php require_once './backend/initialize.php';?>
-<?php echo $db->private; ?>
 <?php require_once './backend/shared/header.php';?>
 <body>
 <section class="main-page">
