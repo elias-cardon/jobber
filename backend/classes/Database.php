@@ -2,6 +2,7 @@
 
 class Database{
     protected $pdo;
+    protected static $instance;
 
     protected function __construct(){
         try {
@@ -9,5 +10,12 @@ class Database{
         } catch (PDOException $e) {
             echo "Connexion échouée: ".$e->getMessage();
         }
+    }
+
+    public static function instance(){
+        if(self::$instance===null){
+            self::$instance=new self;
+        }
+        return self::$instance;
     }
 }
