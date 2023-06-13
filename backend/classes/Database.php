@@ -18,4 +18,8 @@ class Database{
         }
         return self::$instance;
     }
+
+    public function __call($method, $args){
+        return call_user_func_array(array($this->pdo,$method), $args);
+    }
 }
