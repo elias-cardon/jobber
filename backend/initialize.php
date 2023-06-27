@@ -11,3 +11,5 @@ spl_autoload_register(function ($class){
 });
 
 session_start();
+
+include_once "functions.php";
