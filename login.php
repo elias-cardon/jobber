@@ -1,5 +1,5 @@
-<?php $pageTitle='Connexion | Jobber'; ?>
-<?php require_once './backend/shared/header.php';?>
+<?php $pageTitle = 'Connexion | Jobber'; ?>
+<?php require_once './backend/shared/header.php'; ?>
 <body>
 <section class="sign-container">
     <?php require_once './backend/shared/signNav.php'; ?>
