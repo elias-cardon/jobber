@@ -2,15 +2,15 @@
 
 require_once "./backend/initialize.php";
 
-function formSanitizerString($data){
-    $data=trim(strip_tags($data));
-    $data=htmlspecialchars($data);
-    return $data;
-}
 if (is_post_request()) {
     if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
-        $fname = formSanitizerString($_POST['firstName']);
-        echo $fname;
+        $fname=FormSanitizer::formSanitizerName($_POST['firstName']);
+        $lname=FormSanitizer::formSanitizerString($_POST['lastName']);
+        $email=FormSanitizer::formSanitizerString($_POST['email']);
+        $password=FormSanitizer::formSanitizerString($_POST['pass']);
+        $password2=FormSanitizer::formSanitizerString($_POST['pass2']);
+
+        echo $fname.' - '.$lname.' - '.$email.' - '.$password.' - '.$password2;
     }
 }
 ?>
