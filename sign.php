@@ -30,6 +30,9 @@ if (is_post_request()) {
                 <div class="form-group">
                     <label for="firstName">Prénom</label>
                     <input type="text" name="firstName" id="firstName" autocomplete="off" required>
+                    <?php
+                    echo $account->getErrorMessage(Constant::$firstNameCharacters);
+                    ?>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Nom</label>
