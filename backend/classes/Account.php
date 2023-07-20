@@ -11,11 +11,18 @@ class Account{
 
     public function register($fn,$ln,$un,$em,$pw,$pw2){
         $this->validateFirstName($fn);
+        $this->validateLastName($ln);
     }
 
     private function validateFirstName($fn){
         if (strlen($fn) < 2 || strlen($fn) > 25){
             array_push($this->errorArray,Constant::$firstNameCharacters);
+        }
+    }
+
+    private function validateLastName($ln){
+        if (strlen($ln) < 2 || strlen($ln) > 25){
+            array_push($this->errorArray,Constant::$lastNameCharacters);
         }
     }
 
