@@ -10,7 +10,8 @@ if (is_post_request()) {
         $password=FormSanitizer::formSanitizerString($_POST['pass']);
         $password2=FormSanitizer::formSanitizerString($_POST['pass2']);
 
-        $username = "TODO";
+        $username = $account->generateUsername($fname,$lname);
+        echo $username;
 
         $account->register($fname,$lname,$username,$email,$password,$password2);
     }
