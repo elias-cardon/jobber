@@ -12,23 +12,31 @@ class Account{
     public function register($fn,$ln,$un,$em,$pw,$pw2){
         $this->validateFirstName($fn);
         $this->validateLastName($ln);
+        $this->validateEmail($em);
     }
 
     private function validateFirstName($fn){
-        //if (strlen($fn) < 2 || strlen($fn) > 25){
-        //    return array_push($this->errorArray,Constant::$firstNameCharacters);
-        //}
         if ($this->length($fn,2,25)){
             return array_push($this->errorArray,Constant::$firstNameCharacters);
         }
     }
 
     private function validateLastName($ln){
-        //if (strlen($ln) < 2 || strlen($ln) > 25){
-        //    return array_push($this->errorArray,Constant::$lastNameCharacters);
-        //}
         if ($this->length($ln,2,25)){
             return array_push($this->errorArray,Constant::$lastNameCharacters);
+        }
+    }
+
+    private function validateEmail($em){
+        $stmt=$this->pdo->prepare("SELECT * FROM `users` WHERE email=:email");
+        $stmt->bindParam(":email",$email,PDO::PARAM_STR);
+        $stmt->execute();
+        $count=$stmt->rowCount();
+        if ($count > 0){
+            return array_push($this->errorArray,Constant::$emailInUse);
+        }
+        if (!filter_var($em,FILTER_VALIDATE_EMAIL)){
+            return array_push($this->errorArray,Constant::$emailInvalid);
         }
     }
 

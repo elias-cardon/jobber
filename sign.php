@@ -11,7 +11,6 @@ if (is_post_request()) {
         $password2=FormSanitizer::formSanitizerString($_POST['pass2']);
 
         $username = $account->generateUsername($fname,$lname);
-        echo $username;
 
         $account->register($fname,$lname,$username,$email,$password,$password2);
     }
@@ -45,6 +44,10 @@ if (is_post_request()) {
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" autocomplete="off" required>
+                    <?php
+                    echo $account->getErrorMessage(Constant::$emailInvalid);
+                    echo $account->getErrorMessage(Constant::$emailInUse);
+                    ?>
                 </div>
                 <div class="form-group">
                     <label for="pass">Mot de passe</label>
