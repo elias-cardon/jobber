@@ -52,10 +52,17 @@ if (is_post_request()) {
                 <div class="form-group">
                     <label for="pass">Mot de passe</label>
                     <input type="password" name="pass" id="pass" autocomplete="off" required>
+                    <?php
+                    echo $account->getErrorMessage(Constant::$passwordLength);
+                    echo $account->getErrorMessage(Constant::$passwordNotAlphanumeric);
+                    ?>
                 </div>
                 <div class="form-group">
                     <label for="cpass">Confirmez le mot de passe</label>
                     <input type="password" name="pass2" id="cpass" autocomplete="off" required>
+                    <?php
+                        echo $account->getErrorMessage(Constant::$passwordDoNotMatch);
+                    ?>
                 </div>
                 <div class="s-password">
                     <input type="checkbox" id="s-password" class="form-checkbox" onclick="showPassword()">
