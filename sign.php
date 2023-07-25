@@ -12,7 +12,10 @@ if (is_post_request()) {
 
         $username = $account->generateUsername($fname,$lname);
 
-        $account->register($fname,$lname,$username,$email,$password,$password2);
+        $wasSuccessful = $account->register($fname,$lname,$username,$email,$password,$password2);
+        if ($wasSuccessful){
+            //process it
+        }
     }
 }
 ?>
