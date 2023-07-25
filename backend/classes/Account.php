@@ -15,13 +15,19 @@ class Account{
     }
 
     private function validateFirstName($fn){
-        if (strlen($fn) < 2 || strlen($fn) > 25){
+        //if (strlen($fn) < 2 || strlen($fn) > 25){
+        //    return array_push($this->errorArray,Constant::$firstNameCharacters);
+        //}
+        if ($this->length($fn,2,25)){
             return array_push($this->errorArray,Constant::$firstNameCharacters);
         }
     }
 
     private function validateLastName($ln){
-        if (strlen($ln) < 2 || strlen($ln) > 25){
+        //if (strlen($ln) < 2 || strlen($ln) > 25){
+        //    return array_push($this->errorArray,Constant::$lastNameCharacters);
+        //}
+        if ($this->length($ln,2,25)){
             return array_push($this->errorArray,Constant::$lastNameCharacters);
         }
     }
@@ -38,6 +44,14 @@ class Account{
                 }
                 return $userLink;
             }
+        }
+    }
+
+    private function length($input, $min, $max){
+        if(strlen($input)<$min){
+            return true;
+        } elseif (strlen($input)>$max) {
+            return true;
         }
     }
 
