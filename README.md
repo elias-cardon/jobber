@@ -1,6 +1,8 @@
 # 🐦Jobber
 
-**Jobber** est un clone de Twitter développé avec HTML, CSS, JavaScript, PHP et MySQL. Il s'agit d'un ancien projet d'école que je n'ai pas pu réaliser à l'époque. Ce projet vous permettra d'apprendre et de comprendre les bases du développement web tout en créant une application similaire à l'un des réseaux sociaux les plus populaires.
+**Jobber** est un clone de Twitter développé avec HTML, CSS, JavaScript, PHP et MySQL. Il s'agit d'un ancien projet
+d'école que je n'ai pas pu réaliser à l'époque. Ce projet vous permettra d'apprendre et de comprendre les bases du
+développement web tout en créant une application similaire à l'un des réseaux sociaux les plus populaires.
 
 ## 🌟 Fonctionnalités
 
@@ -23,7 +25,7 @@
 ## 🔧 Installation
 
 1. Clonez ce dépôt sur votre machine locale.
-``git clone https://github.com/username/mini-twitter.git``
+   ``git clone https://github.com/username/mini-twitter.git``
 
 2. Importez le fichier `mini-twitter.sql` dans votre système de gestion de base de données (par exemple, phpMyAdmin).
 
@@ -51,4 +53,5 @@ N'hésitez pas à contribuer en ouvrant des issues ou en soumettant des pull req
 
 ## 💬 Contact
 
-Si vous avez des questions ou des suggestions, n'hésitez pas à me contacter sur par email (elias.cardon@laplateforme.io).
+Si vous avez des questions ou des suggestions, n'hésitez pas à me contacter sur par email (
+elias.cardon@laplateforme.io).
