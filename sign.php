@@ -14,7 +14,7 @@ if (is_post_request()) {
 
         $wasSuccessful = $account->register($fname, $lname, $username, $email, $password, $password2);
         if ($wasSuccessful) {
-            $wasSuccessful;
+            echo "Data inserted correctly";
         }
     }
 }
