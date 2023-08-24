@@ -27,7 +27,18 @@ class Account
     public function insertUserDetails($fn, $ln, $un, $em, $pw)
     {
         $pass_hash = password_hash($pw, PASSWORD_BCRYPT);
-        echo $pass_hash;
+        $rand = rand(0, 2);
+        if ($rand == 0) {
+            $profilePic = "./frontend/assets/images/defaultProfilePic.png";
+            $profileCover = "./frontend/assets/images/backgroundCoverPic.svg";
+        } else if ($rand == 1) {
+            $profilePic = "./frontend/assets/images/defaultPic.svg";
+            $profileCover = "./frontend/assets/images/backgroundImage.svg";
+        } else if ($rand == 2) {
+            $profilePic = "./frontend/assets/images/profilePic.jpeg";
+            $profileCover = "./frontend/assets/images/backgroundCoverPic.svg";
+        }
+        echo $profilePic . " - " . $profileCover;
     }
 
     private function validateFirstName($fn)
