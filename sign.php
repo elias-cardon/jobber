@@ -32,21 +32,21 @@ if (is_post_request()) {
             <form action="sign.php" class="formField" method="POST">
                 <div class="form-group">
                     <label for="firstName">Prénom</label>
-                    <input type="text" name="firstName" id="firstName" autocomplete="off" required>
+                    <input type="text" name="firstName" id="firstName" value="<?php getInputValue("firstName"); ?>" autocomplete="off" required>
                     <?php
                     echo $account->getErrorMessage(Constant::$firstNameCharacters);
                     ?>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Nom</label>
-                    <input type="text" name="lastName" id="lastName" autocomplete="off" required>
+                    <input type="text" name="lastName" id="lastName" value="<?php getInputValue("lastName"); ?>" autocomplete="off" required>
                     <?php
                     echo $account->getErrorMessage(Constant::$lastNameCharacters);
                     ?>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" autocomplete="off" required>
+                    <input type="email" name="email" id="email" value="<?php getInputValue("email"); ?>" autocomplete="off" required>
                     <?php
                     echo $account->getErrorMessage(Constant::$emailInvalid);
                     echo $account->getErrorMessage(Constant::$emailInUse);
