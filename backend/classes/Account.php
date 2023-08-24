@@ -23,7 +23,8 @@ class Account{
     }
 
     public function insertUserDetails($fn,$ln,$un,$em,$pw){
-        return true;
+        $pass_hash = password_hash($pw,PASSWORD_BCRYPT);
+        echo $pass_hash;
     }
 
     private function validateFirstName($fn){

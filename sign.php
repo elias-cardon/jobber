@@ -15,6 +15,7 @@ if (is_post_request()) {
         $wasSuccessful = $account->register($fname,$lname,$username,$email,$password,$password2);
         if ($wasSuccessful){
             //process it
+            $wasSuccessful;
         }
     }
 }
