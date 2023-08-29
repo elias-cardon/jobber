@@ -11,3 +11,12 @@ function getInputValue($name)
         echo $_POST[$name];
     }
 }
+
+function url_for($script){
+    return WWW_ROOT.$script;
+}
+
+function redirect_to($location){
+    header("Location:".$location);
+    exit;
+}

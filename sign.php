@@ -14,7 +14,12 @@ if (is_post_request()) {
 
         $wasSuccessful = $account->register($fname, $lname, $username, $email, $password, $password2);
         if ($wasSuccessful) {
-            echo "Data inserted correctly";
+            session_regenerate_id();
+            $_SESSION['userLoggedIn']=$wasSuccessful;
+            if (isset($_POST['remember'])){
+                $_SESSION['rememberMe']=$_POST['remember'];
+            }
+            redirect_to(url_for("verification"));
         }
     }
 }
