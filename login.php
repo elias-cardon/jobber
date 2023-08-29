@@ -29,7 +29,7 @@
             </form>
         </div>
         <footer class="form-footer">
-            <p>Pas encore inscrit ? <a href="sign.php">S'inscrire</a></p>
+            <p>Pas encore inscrit ? <a href="sign">S'inscrire</a></p>
         </footer>
     </div>
 </section>

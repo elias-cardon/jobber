@@ -1,7 +1,7 @@
 <nav class="nav-header-sign__up">
     <ul>
         <li>
-            <a href="index.php">
+            <a href="index">
                 <i class="fab fa-twitter"></i>
                 Accueil
             </a>
