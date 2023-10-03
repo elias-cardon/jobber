@@ -4,6 +4,8 @@ require_once "./backend/initialize.php";
 if (isset($_SESSION["userLoggedIn"])) {
     $user_id = $_SESSION['userLoggedIn'];
     $user = $loadFromUser->userData($user_id);
+} else {
+    redirect_to((url_for("index")));
 }
 
 ?>
