@@ -4,6 +4,8 @@ require_once "./backend/initialize.php";
 if (isset($_SESSION["userLoggedIn"])) {
     $user_id = $_SESSION['userLoggedIn'];
     $user = $loadFromUser->userData($user_id);
+    $verify = Verify::generateLink();
+    echo $verify;
 } else {
     redirect_to((url_for("index")));
 }
