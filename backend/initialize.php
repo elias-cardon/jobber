@@ -17,5 +17,6 @@ session_start();
 
 $account = new Account;
 $loadFromUser = new User;
+$verify = new Verify;
 
 include_once "functions.php";
