@@ -3,15 +3,21 @@
 class Verify
 {
     private $pdo;
+    private $user;
 
     public function __construct()
     {
         $this->pdo = Database::instance();
+        $this->user=new User;
     }
 
     public function generateLink()
     {
         return str_shuffle(substr(md5(time() . mt_rand() . time()), 0, 25));
+    }
+
+    public function verifyCode($targetColumn,$code){
+        return $this->user->get('verification',$targetColumn,array('code'=>$code));
     }
 
     public function sendToMail($email, $message, $subject)

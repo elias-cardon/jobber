@@ -2,4 +2,4 @@
 
 require_once "backend/initialize.php";
 
-$loadFromUser->create("test", ["name"=>"Elias","email"=>"elias.cardon.17@gmail.com"]);
+var_dump($loadFromUser->get("users",["*"],["user_id"=>11]));
