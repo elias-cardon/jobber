@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 06 oct. 2023 à 14:06
+-- Généré le : ven. 06 oct. 2023 à 14:54
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -45,7 +45,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `signUpDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `profileEdit` enum('0','1') NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`user_id`, `firstName`, `lastName`, `username`, `email`, `password`, `profileImage`, `profileCover`, `following`, `followers`, `bio`, `country`, `website`, `signUpDate`, `profileEdit`) VALUES
+(10, 'Elias', 'Cardon', '', 'elias.cardon.17@gmail.com', '$2y$10$z49aU5Bj8wmfqxibiCn/m.H2YN1P8NrKKohr/Un.P61OtRyNn.1tu', './frontend/assets/images/profilePic.jpeg', './frontend/assets/images/backgroundCoverPic.svg', 0, 0, '', '', '', '2023-10-06 16:29:53', '0');
 
 -- --------------------------------------------------------
 

@@ -20,4 +20,17 @@ class User
             return false;
         }
     }
+
+    public function create($tableName, $fields=array()){
+        $columns=implode(', ',array_keys($fields));
+        $values=':'.implode(', :',array_keys($fields));
+        $sql="INSERT INTO `{$tableName}` ({$columns}) VALUES ({$values})";
+        if ($stmt=$this->pdo->prepare($sql)){
+            foreach($fields as $key => $values){
+                $stmt->bindValue(":".$key,$values);
+            }
+            $stmt->execute();
+            return $this->pdo->lastInsertId();
+        }
+    }
 }
