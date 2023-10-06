@@ -9,6 +9,7 @@ if (isset($_SESSION["userLoggedIn"])) {
     $subject = "[Jobber] Veuillez vérifier votre compte.";
     $subject = htmlspecialchars($subject, ENT_QUOTES, "UTF-8");
     $verify->sendToMail($user->email, $message, $subject);
+    $loadFromUser->create("verification",['user_id'=>$user_id,"code"=>$link]);
 } else {
     redirect_to((url_for("index")));
 }
