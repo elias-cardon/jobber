@@ -1,7 +1,7 @@
 # 🐦Jobber
 
 **Jobber** est un clone de Twitter développé avec HTML, CSS, JavaScript, PHP et MySQL. Il s'agit d'un ancien projet
-d'école que je n'ai pas pu réaliser à l'époque.
+d'école que je n'ai pas pu réaliser à l'époque. Il n'est pas encore finit donc ne vous attendez à rien pour l'instant.
 
 ## 🌟 Fonctionnalités
 
