@@ -44,15 +44,11 @@ d'école que je n'ai pas pu réaliser à l'époque. Il n'est pas encore finit do
 - [CSS MDN](https://developer.mozilla.org/fr/docs/Web/CSS)
 - [MySQL Documentation](https://dev.mysql.com/doc/)
 
-## 📝 License
-
-Ce projet est sous licence [MIT License](LICENSE).
-
 ## 🤝 Contribution
 
 N'hésitez pas à contribuer en ouvrant des issues ou en soumettant des pull requests. Toute aide est la bienvenue !
 
 ## 💬 Contact
 
-Si vous avez des questions ou des suggestions, n'hésitez pas à me contacter sur par email (
-elias.cardon@laplateforme.io).
+Si vous avez des questions ou des suggestions, n'hésitez pas à me contacter par email :
+elias.cardon@laplateforme.io.
