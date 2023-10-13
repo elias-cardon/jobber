@@ -24,15 +24,17 @@ d'école que je n'ai pas pu réaliser à l'époque.
 ## 🔧 Installation
 
 1. Clonez ce dépôt sur votre machine locale.
-   ``git clone https://github.com/username/mini-twitter.git``
+   ``git clone https://github.com/username/jobber.git``
 
 2. Importez le fichier `jobber.sql` dans votre système de gestion de base de données (par exemple, phpMyAdmin). Il est pas encore sur le répertoire.
 
 3. Modifiez le fichier `config.php` avec vos paramètres de connexion à la base de données.
 
-4. Configurez votre serveur web pour pointer vers le dossier `public` comme répertoire racine.
+4. Dans le fichier `config.php`, pensez à modifier l'adresse email et le mot de passe avec une adresse et un code que vous avez créé vous-même.
 
-5. Accédez à l'application via votre navigateur.
+5. Pensez à faire la même chose dans le fichier `Verify.php` concernant l'adresse email et éventuellement le nom dans la ligne `$mail->FromName`
+
+6. Accédez à l'application via votre navigateur.
 
 ## 📚 Ressources
 
