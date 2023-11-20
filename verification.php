@@ -6,12 +6,19 @@ if (isset($_SESSION["userLoggedIn"])) {
     $user = $loadFromUser->userData($user_id);
     $link = $verify->generateLink();
     $message = "{$user->firstName}, Votre compte a été créé, veuillez vérifier ce lien pour vérifier votre email <a href='http://localhost/tweety/verification/$link'>Verification</a>";
-    $subject = "[Jobber] Veuillez vérifier votre compte.";
+    $subject = "[JOBBER] Veuillez vérifier votre compte.";
     $subject = htmlspecialchars($subject, ENT_QUOTES, "UTF-8");
     $verify->sendToMail($user->email, $message, $subject);
     $loadFromUser->create("verification",['user_id'=>$user_id,"code"=>$link]);
 } else {
     redirect_to((url_for("index")));
+}
+
+if (is_get_request()){
+    if (isset($_GET['verify'])){
+        $code = FormSanitizer::formSanitizerString($_GET['verify']);
+
+    }
 }
 
 ?>
