@@ -42,3 +42,52 @@ section.main-page{
     max-height: 380px;
     height: 60%;
 }
+
+.right{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    padding: 20px;
+    min-width: 45vw;
+}
+
+.right-content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-width: 437px;
+    max-width: 760px;
+    height: 100%;
+    width: 100%;
+}
+
+.right-site-wrapper{
+    padding-bottom: 12px;
+}
+
+.right-site-wrapper svg{
+    fill: rgb(29, 161, 242);
+}
+
+.right-middle-content{
+    flex: 1;
+}
+
+.right h2.middle-heading{
+    font-size: 75px;
+    font-weight: 900;
+    margin-top: 48px;
+    line-height: 50px;
+    overflow-wrap: break-word;
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    color: rgb(15,20,25);
+}
+
+.right .right-middle-content h5{
+    font-size: 30px;
+    margin-bottom: 32px;
+    font-weight: 700;
+    line-height: 1.3125;
+    overflow-wrap: break-word;
+    color: rgb(15,20,25);
+}
