@@ -8,6 +8,10 @@ html, body{
     height: 100%;
 }
 
+a{
+    text-decoration: none;
+}
+
 html{
     font-size: 62.5%;
 }
@@ -90,4 +94,40 @@ section.main-page{
     line-height: 1.3125;
     overflow-wrap: break-word;
     color: rgb(15,20,25);
+}
+
+.right-middle-content a.btn-link{
+    display: block;
+    min-width: calc(77.28px);
+    min-height: 48px;
+    max-width: 380px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 13px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 9999px;
+}
+
+.right-middle-content .sign-up-btn{
+    background-color: rgb(29, 161, 242);
+    color: #FFF;
+    border: 0.1rem solid rgba(0,0,0,0);
+    transition:background-color 0.3s
+}
+
+.right-middle-content .sign-up-btn:hover{
+    background-color: rgb(29, 161, 218);
+}
+
+.right-middle-content .log-in-btn{
+    background-color: #fff;
+    color: rgb(29, 161, 242);
+    border: 0.1rem solid rgb(29, 161, 242);
+    transition:background-color 0.3s
+}
+
+.right-middle-content .log-in-btn:hover{
+    background-color: rgba(29, 161, 242,0.1);
 }
