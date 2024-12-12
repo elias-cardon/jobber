@@ -1,29 +1,29 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body{
+html, body {
     height: 100%;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-html{
+html {
     font-size: 62.5%;
 }
 
-section.main-page{
+section.main-page {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr min-content;
 }
 
-.left{
+.left {
     grid-column: 1/2;
     grid-row: 1/2;
     background: url("../images/twitterbg.png") no-repeat;
@@ -33,28 +33,28 @@ section.main-page{
     position: relative;
 }
 
-.p-center{
+.p-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.left svg.left-content-icon{
-    fill:#fff;
+.left svg.left-content-icon {
+    fill: #fff;
     width: 90%;
     max-height: 380px;
     height: 60%;
 }
 
-.right{
+.right {
     grid-column: 2/3;
     grid-row: 1/2;
     padding: 20px;
     min-width: 45vw;
 }
 
-.right-content{
+.right-content {
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -64,19 +64,19 @@ section.main-page{
     width: 100%;
 }
 
-.right-site-wrapper{
+.right-site-wrapper {
     padding-bottom: 12px;
 }
 
-.right-site-wrapper svg{
+.right-site-wrapper svg {
     fill: rgb(29, 161, 242);
 }
 
-.right-middle-content{
+.right-middle-content {
     flex: 1;
 }
 
-.right h2.middle-heading{
+.right h2.middle-heading {
     font-size: 75px;
     font-weight: 900;
     margin-top: 48px;
@@ -84,19 +84,19 @@ section.main-page{
     overflow-wrap: break-word;
     letter-spacing: 2px;
     margin-bottom: 48px;
-    color: rgb(15,20,25);
+    color: rgb(15, 20, 25);
 }
 
-.right .right-middle-content h5{
+.right .right-middle-content h5 {
     font-size: 30px;
     margin-bottom: 32px;
     font-weight: 700;
     line-height: 1.3125;
     overflow-wrap: break-word;
-    color: rgb(15,20,25);
+    color: rgb(15, 20, 25);
 }
 
-.right-middle-content a.btn-link{
+.right-middle-content a.btn-link {
     display: block;
     min-width: calc(77.28px);
     min-height: 48px;
@@ -110,24 +110,44 @@ section.main-page{
     border-radius: 9999px;
 }
 
-.right-middle-content .sign-up-btn{
+.right-middle-content .sign-up-btn {
     background-color: rgb(29, 161, 242);
     color: #FFF;
-    border: 0.1rem solid rgba(0,0,0,0);
-    transition:background-color 0.3s
+    border: 0.1rem solid rgba(0, 0, 0, 0);
+    transition: background-color 0.3s
 }
 
-.right-middle-content .sign-up-btn:hover{
+.right-middle-content .sign-up-btn:hover {
     background-color: rgb(29, 161, 218);
 }
 
-.right-middle-content .log-in-btn{
+.right-middle-content .log-in-btn {
     background-color: #fff;
     color: rgb(29, 161, 242);
     border: 0.1rem solid rgb(29, 161, 242);
-    transition:background-color 0.3s
+    transition: background-color 0.3s
 }
 
-.right-middle-content .log-in-btn:hover{
-    background-color: rgba(29, 161, 242,0.1);
+.right-middle-content .log-in-btn:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+}
+
+footer.main-page-footer {
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    padding: 15px 16px;
+}
+
+.main-page-footer nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-page-footer nav a {
+    font-size: 16px;
+    padding-right: 16px;
+    color: rgb(91,112,131);
+    line-height: calc(19.6875px);
+    margin-bottom: 1rem;
 }

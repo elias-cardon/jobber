@@ -30,7 +30,25 @@
             </div>
         </div>
     </div>
-    <footer aria-label="footer" class="main-page-footer">Footer</footer>
+    <footer aria-label="footer" class="main-page-footer">
+        <nav role="navigation">
+            <a href="">A propos</a>
+            <a href="">Help Center</a>
+            <a href="">Terms of Service</a>
+            <a href="">Privacy policy</a>
+            <a href="">Ads info</a>
+            <a href="">Blog</a>
+            <a href="">Status</a>
+            <a href="">Careers</a>
+            <a href="">Brand ressources</a>
+            <a href="">Advertising</a>
+            <a href="">Jobber for Business</a>
+            <a href="">Developping</a>
+            <a href="">Directory</a>
+            <a href="">Settings</a>
+            <span href="">&copy; <?php echo date("Y");?> Jobber</span>
+        </nav>
+    </footer>
 </section>
 </body>
 </html>
