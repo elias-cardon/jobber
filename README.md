@@ -24,7 +24,7 @@ d'école que je n'ai pas pu réaliser à l'époque. Il n'est pas encore finit do
 ## 🔧 Installation
 
 1. Clonez ce dépôt sur votre machine locale :
-   ``git clone https://github.com/username/jobber.git``
+   ``git clone https://github.com/elias-cardon/jobber.git``
 
 2. Importez le fichier `jobber.sql` dans votre système de gestion de base de données (par exemple, phpMyAdmin). Il est pas encore sur le répertoire.
 
