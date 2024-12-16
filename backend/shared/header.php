@@ -13,6 +13,6 @@ if (!isset($pageTitle)) {
     <title><?php echo $pageTitle?></title>
     <link rel="shortcut icon" href="./frontend/assets/favicon/twitter.ico" type="image/x-icon">
     <link rel="stylesheet" href="./frontend/assets/css/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="frontend/assets/css/style.css">
+    <link rel="stylesheet" href="frontend/assets/css/master.css">
 </head>
 <body>
