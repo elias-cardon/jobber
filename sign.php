@@ -3,7 +3,7 @@
 <?php require_once './backend/shared/header.php'; ?>
 
 <section class="sign-container">
-    <nav class="nav-header-sing__up">
+    <nav class="nav-header-sign__up">
         <ul>
             <li>
                 <a href="index.php">
