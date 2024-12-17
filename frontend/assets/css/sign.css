@@ -97,5 +97,47 @@ input:not(.form-checkbox){
     display: block;
     height: 3.5rem;
     border: 0.1rem solid #ddd;
-    border-radius: 0.5rem
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+}
+
+.s-password{
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.form-btn-wrapper .btn-form{
+    padding: 1rem 1.5rem;
+    background-color: #1aa1f5;
+    color: #fff;
+    border: 0.1rem solid #1aa1f5;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.form-btn-wrapper label{
+    font-size: 1.6rem;
+}
+
+.form-footer{
+    grid-column: 1/-1;
+    grid-row: 2/-1;
+    padding-left: 100px;
+    background-color: #edf3f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.form-footer p{
+    font-size: 1.6rem;
+}
+
+.form-footer a:hover{
+    text-decoration: underline;
 }

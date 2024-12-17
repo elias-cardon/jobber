@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-btn-wrapper">
                     <button type="submit" class="btn-form">S'inscrire</button>
-                    <input type="checkbox" id="check" name="remember">
+                    <input type="checkbox" class="form-checkbox" id="check" name="remember">
                     <label for="check">Se souvenir de moi</label>
                 </div>
             </form>
