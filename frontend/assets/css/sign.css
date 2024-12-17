@@ -87,6 +87,11 @@ section.sign-container .nav-header-sign__up ul{
     margin-bottom: 2rem;
 }
 
+.form-group label{
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
 input:not(.form-checkbox){
     width: 30rem;
     display: block;
