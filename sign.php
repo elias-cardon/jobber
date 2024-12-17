@@ -3,22 +3,7 @@
 <?php require_once './backend/shared/header.php'; ?>
 
 <section class="sign-container">
-    <nav class="nav-header-sign__up">
-        <ul>
-            <li>
-                <a href="index.php">
-                    <i class="fa fa-twitter"></i>
-                    Accueil
-                </a>
-            </li>
-            <li>
-                <a href="#">A propos</a>
-            </li>
-            <li>
-                <a href="#">Langue : Français</a>
-            </li>
-        </ul>
-    </nav>
+    <?php require_once './backend/shared/signNav.php'; ?>
     <div class="form-container">
         <div class="form-content">
             <div class="header-form-content">
