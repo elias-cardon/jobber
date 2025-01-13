@@ -9,26 +9,26 @@
             <div class="header-form-content">
                 <h2>Créez votre compte</h2>
             </div>
-            <form action="sign.php" class="formField">
+            <form action="sign.php" class="formField" method="POST">
                 <div class="form-group">
                     <label for="firstName">Prénom</label>
-                    <input type="text" name="firstName" id="firstName" autocomplete="off">
+                    <input type="text" name="firstName" id="firstName" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Nom</label>
-                    <input type="text" name="lastName" id="lastName" autocomplete="off">
+                    <input type="text" name="lastName" id="lastName" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" autocomplete="off">
+                    <input type="email" name="email" id="email" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="pass">Mot de passe</label>
-                    <input type="password" name="pass" id="pass" autocomplete="off">
+                    <input type="password" name="pass" id="pass" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="cpass">Confirmer mot de passe</label>
-                    <input type="password" name="pass2" id="cpass" autocomplete="off">
+                    <input type="password" name="pass2" id="cpass" autocomplete="off" required>
                 </div>
                 <div class="s-password">
                     <input type="checkbox" class="form-checkbox" id="s-password" onclick="showPassword()">
