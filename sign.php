@@ -1,5 +1,15 @@
-<?php $pageTitle = 'Inscription | Jobber';
-0 ?>
+<?php
+
+require_once "backend/initialize.php";
+
+if (is_post_request()) {
+    if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
+        $fname = $_POST['firstName'];
+        echo $fname;
+    }
+}
+?>
+<?php $pageTitle = 'Inscription | Jobber'; ?>
 <?php require_once './backend/shared/header.php'; ?>
 
 <section class="sign-container">
