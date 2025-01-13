@@ -1,5 +1,5 @@
 <?php require_once './backend/initialize.php';?>
-<?php Database::instance(); ?>
+<?php Database::instance()->prepare("SELECT * FROM `users`"); ?>
 <?php require_once './backend/shared/header.php'; ?>
 <section class="main-page">
     <div class="left">
