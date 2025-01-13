@@ -19,7 +19,7 @@
                     <input type="password" name="pass" id="pass" autocomplete="off">
                 </div>
                 <div class="s-password">
-                    <input type="checkbox" class="form-checkbox" id="s-password">
+                    <input type="checkbox" class="form-checkbox" id="s-password" onclick="showLoginPassword()">
                     <label for="s-password">Montrer le mot de passe</label>
                 </div>
                 <div class="form-btn-wrapper">
@@ -34,3 +34,4 @@
         </footer>
     </div>
 </section>
+<script src="frontend/assets/js/showPassword.js"></script>
