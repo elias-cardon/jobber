@@ -2,9 +2,14 @@
 
 require_once "backend/initialize.php";
 
+function formSanitizerString($data){
+    $data = trim(strip_tags($data));
+    $data=htmlspecialchars($data);
+    return $data;
+}
 if (is_post_request()) {
     if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
-        $fname = $_POST['firstName'];
+        $fname = formSanitizerString($_POST['firstName']);
         echo $fname;
     }
 }
