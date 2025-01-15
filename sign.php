@@ -2,15 +2,19 @@
 
 require_once "backend/initialize.php";
 
-function formSanitizerString($data){
-    $data = trim(strip_tags($data));
-    $data=htmlspecialchars($data);
-    return $data;
-}
+// Vérifie si la requête reçue est de type POST
 if (is_post_request()) {
+    // Vérifie si le champ 'firstName' est présent et non vide
     if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
-        $fname = formSanitizerString($_POST['firstName']);
-        echo $fname;
+        // Nettoie et assainit les données du formulaire
+        $fname = FormSanitizer::formSanitizerName($_POST['firstName']);  // Prénom
+        $lname = FormSanitizer::formSanitizerName($_POST['lastName']);   // Nom
+        $email = FormSanitizer::formSanitizerString($_POST['email']);    // Email
+        $password = FormSanitizer::formSanitizerString($_POST['pass']);  // Mot de passe
+        $password2 = FormSanitizer::formSanitizerString($_POST['pass2']); // Confirmation mot de passe
+
+        // Affiche les données reçues (à des fins de test ou de débogage)
+        echo $fname . ' ' . $lname . ' ' . $email . ' ' . $password . '<br>';
     }
 }
 ?>
