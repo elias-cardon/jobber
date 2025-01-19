@@ -35,6 +35,7 @@ if (is_post_request()) {
             <form action="sign.php" class="formField" method="POST">
                 <div class="form-group">
                     <label for="firstName">Prénom</label>
+                    <?php echo $account->getErrorMessage(Constant::$firstNameCharacters); ?>
                     <input type="text" name="firstName" id="firstName" autocomplete="off" required>
                 </div>
                 <div class="form-group">
