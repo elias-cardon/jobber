@@ -13,8 +13,8 @@ if (is_post_request()) {
         $password = FormSanitizer::formSanitizerString($_POST['pass']);  // Mot de passe
         $password2 = FormSanitizer::formSanitizerString($_POST['pass2']); // Confirmation mot de passe
 
-        // TODO : Générer ou récupérer un nom d'utilisateur (actuellement non implémenté)
-        $username = "TODO";
+        $username = $account->generateUsername($fname, $lname);
+        echo $username;
 
         // Appelle la méthode pour enregistrer un nouveau compte utilisateur
         $account->register($fname, $lname, $username, $email, $password, $password2);
