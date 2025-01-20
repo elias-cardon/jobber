@@ -1,5 +1,6 @@
 <?php
 
+// Inclut le fichier d'initialisation qui charge les configurations, classes, et fonctions nécessaires
 require_once "backend/initialize.php";
 
 // Vérifie si la requête reçue est de type POST
@@ -13,13 +14,15 @@ if (is_post_request()) {
         $password = FormSanitizer::formSanitizerString($_POST['pass']);  // Mot de passe
         $password2 = FormSanitizer::formSanitizerString($_POST['pass2']); // Confirmation mot de passe
 
+        // Génère un nom d'utilisateur à partir du prénom et du nom
         $username = $account->generateUsername($fname, $lname);
-        echo $username;
+        echo $username; // Affiche le nom d'utilisateur généré (pour vérification ou test)
 
         // Appelle la méthode pour enregistrer un nouveau compte utilisateur
         $account->register($fname, $lname, $username, $email, $password, $password2);
     }
 }
+
 
 ?>
 <?php $pageTitle = 'Inscription | Jobber'; ?>
