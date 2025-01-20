@@ -23,14 +23,22 @@ class Account {
 
     // Valide la longueur du prénom (entre 2 et 25 caractères)
     private function validateFirstName($fn) {
-        if (strlen($fn) < 2 || strlen($fn) > 25) {
+        //if (strlen($fn) < 2 || strlen($fn) > 25) {
+        //    return array_push($this->errorArray, Constant::$firstNameCharacters);
+        //}
+        // Vérifie si la longueur du prénom est hors des limites autorisées
+        if ($this->length($fn,2,25)){
             return array_push($this->errorArray, Constant::$firstNameCharacters);
         }
     }
 
     // Valide la longueur du nom (entre 2 et 25 caractères)
     private function validateLastName($ln) {
-        if (strlen($ln) < 2 || strlen($ln) > 25) {
+        //if (strlen($ln) < 2 || strlen($ln) > 25) {
+        //    return array_push($this->errorArray, Constant::$lastNameCharacters);
+        //}
+        // Vérifie si la longueur du nom est hors des limites autorisées
+        if ($this->length($ln,2,25)){
             return array_push($this->errorArray, Constant::$lastNameCharacters);
         }
     }
@@ -64,6 +72,15 @@ class Account {
             return true; // Le nom d'utilisateur existe déjà
         } else {
             return false; // Le nom d'utilisateur est disponible
+        }
+    }
+
+    // Vérifie si la longueur d'une chaîne est en dehors des limites autorisées
+    private function length($input, $min, $max) {
+        if (strlen($input) < $min) {
+            return true; // Trop court
+        } else if (strlen($input) > $max) {
+            return true; // Trop long
         }
     }
 

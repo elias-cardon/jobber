@@ -16,7 +16,6 @@ if (is_post_request()) {
 
         // Génère un nom d'utilisateur à partir du prénom et du nom
         $username = $account->generateUsername($fname, $lname);
-        echo $username; // Affiche le nom d'utilisateur généré (pour vérification ou test)
 
         // Appelle la méthode pour enregistrer un nouveau compte utilisateur
         $account->register($fname, $lname, $username, $email, $password, $password2);
