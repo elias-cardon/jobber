@@ -18,28 +18,42 @@ class Account {
         $this->validateFirstName($fn);
         // Validation du nom
         $this->validateLastName($ln);
-        // TODO : Ajouter d'autres validations (email, mot de passe) et l'insertion en base de données
+        // Validation de l'email
+        $this->validateEmail($em);
+        // TODO : Ajouter des validations pour le mot de passe et l'insertion en base de données
     }
 
     // Valide la longueur du prénom (entre 2 et 25 caractères)
     private function validateFirstName($fn) {
-        //if (strlen($fn) < 2 || strlen($fn) > 25) {
-        //    return array_push($this->errorArray, Constant::$firstNameCharacters);
-        //}
         // Vérifie si la longueur du prénom est hors des limites autorisées
-        if ($this->length($fn,2,25)){
+        if ($this->length($fn, 2, 25)) {
             return array_push($this->errorArray, Constant::$firstNameCharacters);
         }
     }
 
     // Valide la longueur du nom (entre 2 et 25 caractères)
     private function validateLastName($ln) {
-        //if (strlen($ln) < 2 || strlen($ln) > 25) {
-        //    return array_push($this->errorArray, Constant::$lastNameCharacters);
-        //}
         // Vérifie si la longueur du nom est hors des limites autorisées
-        if ($this->length($ln,2,25)){
+        if ($this->length($ln, 2, 25)) {
             return array_push($this->errorArray, Constant::$lastNameCharacters);
+        }
+    }
+
+    // Valide l'email
+    private function validateEmail($email) {
+        // Prépare une requête pour vérifier si l'email existe déjà dans la base de données
+        $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `email` = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $count = $stmt->rowCount(); // Compte le nombre de résultats
+        if ($count > 0) {
+            // Ajoute un message d'erreur si l'email est déjà utilisé
+            return array_push($this->errorArray, Constant::$emailInUse);
+        }
+        // Vérifie si l'email est dans un format valide
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Ajoute un message d'erreur si le format de l'email est incorrect
+            return array_push($this->errorArray, Constant::$emailInvalid);
         }
     }
 
@@ -49,11 +63,11 @@ class Account {
         if (!empty($fn) && !empty($ln)) {
             // Vérifie si les champs prénom et nom sont valides
             if (!in_array(Constant::$firstNameCharacters, $this->errorArray) && !in_array(Constant::$lastNameCharacters, $this->errorArray)) {
-                $username = strtolower($fn . '' . $ln); // Concatène prénom et nom en minuscules
+                $username = strtolower($fn . $ln); // Concatène prénom et nom en minuscules
                 // Vérifie si le nom d'utilisateur existe déjà
                 if ($this->checkUsernameExist($username)) {
                     $screenRand = rand(); // Génère un nombre aléatoire
-                    $userLink = $username . '' . $screenRand; // Ajoute le nombre au nom d'utilisateur
+                    $userLink = $username . $screenRand; // Ajoute le nombre au nom d'utilisateur
                 } else {
                     $userLink = $username;
                 }
@@ -64,6 +78,7 @@ class Account {
 
     // Vérifie si un nom d'utilisateur existe déjà dans la base de données
     private function checkUsernameExist($username) {
+        // Prépare une requête pour vérifier si le nom d'utilisateur existe
         $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `username` = :username");
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();

@@ -47,6 +47,8 @@ if (is_post_request()) {
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
+                    <?php echo $account->getErrorMessage(Constant::$emailInUse); ?>
+                    <?php echo $account->getErrorMessage(Constant::$emailInvalid); ?>
                     <input type="email" name="email" id="email" autocomplete="off" required>
                 </div>
                 <div class="form-group">
