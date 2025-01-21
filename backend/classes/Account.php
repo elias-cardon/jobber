@@ -14,7 +14,7 @@ class Account {
     }
 
     // Méthode pour enregistrer un nouvel utilisateur
-    // Valide les champs obligatoires et prépare l'utilisateur pour l'insertion dans la base de données
+    // Cette méthode valide les données d'entrée et prépare leur insertion dans la base de données
     public function register($fn, $ln, $un, $em, $pw, $pw2) {
         // Validation du prénom
         $this->validateFirstName($fn);
@@ -28,27 +28,44 @@ class Account {
         // Validation des mots de passe
         $this->validatePassword($pw, $pw2);
 
-        // Si le tableau des erreurs est vide, insère les données utilisateur dans la base
+        // Si aucune erreur n'est détectée, insère les détails utilisateur dans la base de données
         if (empty($this->errorArray)) {
             return $this->insertUserDetails($fn, $ln, $un, $em, $pw);
         } else {
-            // Retourne vrai pour indiquer qu'il y a des erreurs
+            // Retourne `true` pour indiquer qu'il y a des erreurs
             return true;
         }
     }
 
-    // Méthode pour insérer les détails de l'utilisateur dans la base de données
+    // Méthode pour insérer les détails utilisateur dans la base de données
     public function insertUserDetails($fn, $ln, $un, $em, $pw) {
-        // Hash le mot de passe avant de l'insérer dans la base
+        // Hachage du mot de passe pour une sécurité renforcée
         $pass_hash = password_hash($pw, PASSWORD_BCRYPT);
-        echo $pass_hash; // Affiche le mot de passe hashé (pour test/debug)
+
+        // Génère un nombre aléatoire pour déterminer l'image de profil et la couverture
+        $rand = rand(0, 2);
+
+        // En fonction de la valeur aléatoire, sélectionne des images de profil et de couverture
+        if ($rand == 0) {
+            $profilePic = "frontend/assets/images/defaultProfilePic.png";
+            $profileCover = "frontend/assets/images/backgroundProfileCover.svg";
+        } else if ($rand == 1) {
+            $profilePic = "frontend/assets/images/defaultPic.svg";
+            $profileCover = "frontend/assets/images/backgroundImage.svg";
+        } else if ($rand == 2) {
+            $profilePic = "frontend/assets/images/profilePic.jpeg";
+            $profileCover = "frontend/assets/images/backgroundProfileCover.svg";
+        }
+
+        // Affiche les chemins d'image sélectionnés (pour le débogage ou test)
+        echo $profilePic . "-" . $profileCover;
     }
 
     // Valide la longueur du prénom (entre 2 et 25 caractères)
     private function validateFirstName($fn) {
         // Vérifie si la longueur du prénom est hors des limites autorisées
         if ($this->length($fn, 2, 25)) {
-            // Ajoute un message d'erreur si la validation échoue
+            // Ajoute un message d'erreur spécifique au tableau des erreurs
             return array_push($this->errorArray, Constant::$firstNameCharacters);
         }
     }
@@ -57,14 +74,14 @@ class Account {
     private function validateLastName($ln) {
         // Vérifie si la longueur du nom est hors des limites autorisées
         if ($this->length($ln, 2, 25)) {
-            // Ajoute un message d'erreur si la validation échoue
+            // Ajoute un message d'erreur spécifique au tableau des erreurs
             return array_push($this->errorArray, Constant::$lastNameCharacters);
         }
     }
 
-    // Valide les mots de passe (confirmation et exigences)
+    // Valide les mots de passe (vérifie leur correspondance et leurs exigences)
     private function validatePassword($pw, $pw2) {
-        // Vérifie si les mots de passe correspondent
+        // Vérifie si les deux mots de passe sont identiques
         if ($pw != $pw2) {
             // Ajoute un message d'erreur si les mots de passe ne correspondent pas
             return array_push($this->errorArray, Constant::$passwordDoNotMatch);
@@ -76,7 +93,7 @@ class Account {
             return array_push($this->errorArray, Constant::$passwordDoNotAlphanumeric);
         }
 
-        // Vérifie si la longueur du mot de passe est hors des limites autorisées
+        // Vérifie si la longueur du mot de passe respecte les limites autorisées
         if ($this->length($pw, 5, 30)) {
             // Ajoute un message d'erreur si la longueur est incorrecte
             return array_push($this->errorArray, Constant::$passwordLength);
@@ -91,32 +108,31 @@ class Account {
         $stmt->execute();
 
         // Vérifie si l'email est déjà utilisé
-        $count = $stmt->rowCount(); // Compte le nombre de résultats
+        $count = $stmt->rowCount();
         if ($count > 0) {
             // Ajoute un message d'erreur si l'email est déjà utilisé
             return array_push($this->errorArray, Constant::$emailInUse);
         }
 
-        // Vérifie si l'email est dans un format valide
+        // Vérifie si le format de l'email est valide
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Ajoute un message d'erreur si le format de l'email est incorrect
+            // Ajoute un message d'erreur si le format est incorrect
             return array_push($this->errorArray, Constant::$emailInvalid);
         }
     }
 
     // Génère un nom d'utilisateur à partir du prénom et du nom
-    // Ajoute un nombre aléatoire si le nom d'utilisateur existe déjà
     public function generateUsername($fn, $ln) {
         // Vérifie que les champs prénom et nom ne sont pas vides
         if (!empty($fn) && !empty($ln)) {
-            // Vérifie si les champs prénom et nom passent la validation
+            // Vérifie si les validations de prénom et de nom sont passées
             if (!in_array(Constant::$firstNameCharacters, $this->errorArray) && !in_array(Constant::$lastNameCharacters, $this->errorArray)) {
-                // Concatène le prénom et le nom en minuscules
+                // Crée un nom d'utilisateur en concaténant prénom et nom en minuscules
                 $username = strtolower($fn . $ln);
 
-                // Vérifie si le nom d'utilisateur existe déjà
+                // Vérifie si ce nom d'utilisateur existe déjà
                 if ($this->checkUsernameExist($username)) {
-                    // Génère un nom d'utilisateur unique en ajoutant un nombre aléatoire
+                    // Ajoute un nombre aléatoire pour générer un nom unique
                     $screenRand = rand();
                     $userLink = $username . $screenRand;
                 } else {
@@ -131,26 +147,26 @@ class Account {
 
     // Vérifie si un nom d'utilisateur existe déjà dans la base de données
     private function checkUsernameExist($username) {
-        // Prépare une requête pour vérifier si le nom d'utilisateur existe
+        // Prépare une requête SQL pour vérifier l'existence
         $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `username` = :username");
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
 
-        // Retourne vrai si le nom d'utilisateur existe, faux sinon
+        // Retourne `true` si le nom d'utilisateur existe, sinon `false`
         return $stmt->rowCount() > 0;
     }
 
-    // Vérifie si la longueur d'une chaîne est en dehors des limites autorisées
+    // Vérifie si la longueur d'une chaîne respecte les limites spécifiées
     private function length($input, $min, $max) {
-        // Retourne vrai si la longueur est inférieure au minimum ou supérieure au maximum
+        // Retourne vrai si la longueur est inférieure ou supérieure aux limites
         return strlen($input) < $min || strlen($input) > $max;
     }
 
-    // Retourne un message d'erreur HTML si l'erreur est présente
+    // Retourne un message d'erreur HTML si l'erreur existe dans le tableau des erreurs
     public function getErrorMessage($error) {
-        // Vérifie si l'erreur existe dans le tableau des erreurs
+        // Vérifie si l'erreur est dans le tableau des erreurs
         if (in_array($error, $this->errorArray)) {
-            // Retourne le message d'erreur au format HTML
+            // Retourne un message HTML formaté
             return '<span class="errorMessage">' . $error . '</span>';
         }
     }
