@@ -25,22 +25,23 @@ class Account {
         // Validation de l'email
         $this->validateEmail($em);
 
-        // Validation du mot de passe
+        // Validation des mots de passe
         $this->validatePassword($pw, $pw2);
 
         // Si le tableau des erreurs est vide, insère les données utilisateur dans la base
         if (empty($this->errorArray)) {
-            return $this->insertUserData($fn, $ln, $un, $em, $pw);
+            return $this->insertUserDetails($fn, $ln, $un, $em, $pw);
         } else {
             // Retourne vrai pour indiquer qu'il y a des erreurs
             return true;
         }
     }
 
-    // Insère les données utilisateur dans la base de données (méthode à compléter)
-    public function insertUserData($fn, $ln, $un, $em, $pw) {
-        // TODO : Ajouter la logique d'insertion des données dans la base
-        return true;
+    // Méthode pour insérer les détails de l'utilisateur dans la base de données
+    public function insertUserDetails($fn, $ln, $un, $em, $pw) {
+        // Hash le mot de passe avant de l'insérer dans la base
+        $pass_hash = password_hash($pw, PASSWORD_BCRYPT);
+        echo $pass_hash; // Affiche le mot de passe hashé (pour test/debug)
     }
 
     // Valide la longueur du prénom (entre 2 et 25 caractères)

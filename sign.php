@@ -23,7 +23,7 @@ if (is_post_request()) {
         // Vérifie si l'enregistrement s'est bien déroulé
         if ($wasSuccessfull) {
             // Traite le succès (par exemple, redirige l'utilisateur ou affiche un message de confirmation)
-            // TODO : Ajouter ici le traitement post-enregistrement, si nécessaire
+            $wasSuccessfull;
         }
     }
 }
