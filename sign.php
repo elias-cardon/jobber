@@ -53,6 +53,9 @@ if (is_post_request()) {
                 </div>
                 <div class="form-group">
                     <label for="pass">Mot de passe</label>
+                    <?php echo $account->getErrorMessage(Constant::$passwordLength); ?>
+                    <?php echo $account->getErrorMessage(Constant::$passwordDoNotMatch); ?>
+                    <?php echo $account->getErrorMessage(Constant::$passwordDoNotAlphanumeric); ?>
                     <input type="password" name="pass" id="pass" autocomplete="off" required>
                 </div>
                 <div class="form-group">
