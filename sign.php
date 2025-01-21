@@ -45,18 +45,18 @@ if (is_post_request()) {
                 <div class="form-group">
                     <label for="firstName">Prénom</label>
                     <?php echo $account->getErrorMessage(Constant::$firstNameCharacters); ?>
-                    <input type="text" name="firstName" id="firstName" autocomplete="off" required>
+                    <input type="text" name="firstName" id="firstName" value="<?php getInputValue("firstName"); ?>" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Nom</label>
                     <?php echo $account->getErrorMessage(Constant::$lastNameCharacters); ?>
-                    <input type="text" name="lastName" id="lastName" autocomplete="off" required>
+                    <input type="text" name="lastName" id="lastName" value="<?php getInputValue("lastName"); ?>" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <?php echo $account->getErrorMessage(Constant::$emailInUse); ?>
                     <?php echo $account->getErrorMessage(Constant::$emailInvalid); ?>
-                    <input type="email" name="email" id="email" autocomplete="off" required>
+                    <input type="email" name="email" id="email" value="<?php getInputValue("email"); ?>" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="pass">Mot de passe</label>
