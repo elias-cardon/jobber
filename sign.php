@@ -8,19 +8,26 @@ if (is_post_request()) {
     // Vérifie si le champ 'firstName' est présent et non vide
     if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
         // Nettoie et assainit les données du formulaire
-        $fname = FormSanitizer::formSanitizerName($_POST['firstName']);  // Prénom
-        $lname = FormSanitizer::formSanitizerName($_POST['lastName']);   // Nom
-        $email = FormSanitizer::formSanitizerString($_POST['email']);    // Email
-        $password = FormSanitizer::formSanitizerString($_POST['pass']);  // Mot de passe
-        $password2 = FormSanitizer::formSanitizerString($_POST['pass2']); // Confirmation mot de passe
+        $fname = FormSanitizer::formSanitizerName($_POST['firstName']);  // Prénom, après nettoyage et validation
+        $lname = FormSanitizer::formSanitizerName($_POST['lastName']);   // Nom, après nettoyage et validation
+        $email = FormSanitizer::formSanitizerString($_POST['email']);    // Email, après nettoyage et validation
+        $password = FormSanitizer::formSanitizerString($_POST['pass']);  // Mot de passe, après nettoyage
+        $password2 = FormSanitizer::formSanitizerString($_POST['pass2']); // Confirmation du mot de passe, après nettoyage
 
-        // Génère un nom d'utilisateur à partir du prénom et du nom
+        // Génère un nom d'utilisateur unique à partir du prénom et du nom
         $username = $account->generateUsername($fname, $lname);
 
-        // Appelle la méthode pour enregistrer un nouveau compte utilisateur
-        $account->register($fname, $lname, $username, $email, $password, $password2);
+        // Appelle la méthode pour enregistrer un nouveau compte utilisateur avec les données fournies
+        $wasSuccessfull = $account->register($fname, $lname, $username, $email, $password, $password2);
+
+        // Vérifie si l'enregistrement s'est bien déroulé
+        if ($wasSuccessfull) {
+            // Traite le succès (par exemple, redirige l'utilisateur ou affiche un message de confirmation)
+            // TODO : Ajouter ici le traitement post-enregistrement, si nécessaire
+        }
     }
 }
+
 
 
 ?>

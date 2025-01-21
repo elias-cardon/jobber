@@ -9,7 +9,8 @@ class Account {
 
     // Constructeur : initialise la connexion à la base de données
     public function __construct() {
-        $this->pdo = Database::instance();  // Obtient l'instance unique de la classe Database (singleton)
+        // Obtient l'instance unique de la classe Database (singleton)
+        $this->pdo = Database::instance();
     }
 
     // Méthode pour enregistrer un nouvel utilisateur
@@ -27,7 +28,19 @@ class Account {
         // Validation du mot de passe
         $this->validatePassword($pw, $pw2);
 
-        // TODO : Ajouter l'insertion de l'utilisateur en base de données si aucune erreur
+        // Si le tableau des erreurs est vide, insère les données utilisateur dans la base
+        if (empty($this->errorArray)) {
+            return $this->insertUserData($fn, $ln, $un, $em, $pw);
+        } else {
+            // Retourne vrai pour indiquer qu'il y a des erreurs
+            return true;
+        }
+    }
+
+    // Insère les données utilisateur dans la base de données (méthode à compléter)
+    public function insertUserData($fn, $ln, $un, $em, $pw) {
+        // TODO : Ajouter la logique d'insertion des données dans la base
+        return true;
     }
 
     // Valide la longueur du prénom (entre 2 et 25 caractères)
@@ -65,7 +78,7 @@ class Account {
         // Vérifie si la longueur du mot de passe est hors des limites autorisées
         if ($this->length($pw, 5, 30)) {
             // Ajoute un message d'erreur si la longueur est incorrecte
-            return array_push($this->errorArray, Constant::$lastNameCharacters);
+            return array_push($this->errorArray, Constant::$passwordLength);
         }
     }
 
