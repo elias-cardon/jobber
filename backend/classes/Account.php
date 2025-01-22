@@ -57,45 +57,52 @@ class Account {
             $profileCover = "frontend/assets/images/backgroundProfileCover.svg";
         }
 
-        // Affiche les chemins d'image sélectionnés (pour le débogage ou test)
-        echo $profilePic . "-" . $profileCover;
+        // Prépare une requête pour insérer les informations utilisateur dans la base de données
+        $stmt = $this->pdo->prepare("INSERT INTO users (firstName, lastName, username, email, password, profileImage, profileCover) VALUES (:fn, :ln, :un, :em, :pw, :pic, :cov)");
+        $stmt->bindParam(':fn', $fn, PDO::PARAM_STR);
+        $stmt->bindParam(':ln', $ln, PDO::PARAM_STR);
+        $stmt->bindParam(':un', $un, PDO::PARAM_STR);
+        $stmt->bindParam(':em', $em, PDO::PARAM_STR);
+        $stmt->bindParam(':pw', $pass_hash, PDO::PARAM_STR);
+        $stmt->bindParam(':pic', $profilePic, PDO::PARAM_STR);
+        $stmt->bindParam(':cov', $profileCover, PDO::PARAM_STR);
+
+        // Exécute la requête
+        $stmt->execute();
+
+        // Retourne l'ID de l'utilisateur inséré
+        return $this->pdo->lastInsertId();
     }
 
     // Valide la longueur du prénom (entre 2 et 25 caractères)
     private function validateFirstName($fn) {
-        // Vérifie si la longueur du prénom est hors des limites autorisées
         if ($this->length($fn, 2, 25)) {
-            // Ajoute un message d'erreur spécifique au tableau des erreurs
+            // Ajoute un message d'erreur spécifique si la validation échoue
             return array_push($this->errorArray, Constant::$firstNameCharacters);
         }
     }
 
     // Valide la longueur du nom (entre 2 et 25 caractères)
     private function validateLastName($ln) {
-        // Vérifie si la longueur du nom est hors des limites autorisées
         if ($this->length($ln, 2, 25)) {
-            // Ajoute un message d'erreur spécifique au tableau des erreurs
             return array_push($this->errorArray, Constant::$lastNameCharacters);
         }
     }
 
     // Valide les mots de passe (vérifie leur correspondance et leurs exigences)
     private function validatePassword($pw, $pw2) {
-        // Vérifie si les deux mots de passe sont identiques
+        // Vérifie si les deux mots de passe correspondent
         if ($pw != $pw2) {
-            // Ajoute un message d'erreur si les mots de passe ne correspondent pas
             return array_push($this->errorArray, Constant::$passwordDoNotMatch);
         }
 
         // Vérifie si le mot de passe contient uniquement des caractères alphanumériques
         if (preg_match("/[^A-Za-z0-9]/", $pw)) {
-            // Ajoute un message d'erreur si des caractères spéciaux sont détectés
             return array_push($this->errorArray, Constant::$passwordDoNotAlphanumeric);
         }
 
         // Vérifie si la longueur du mot de passe respecte les limites autorisées
         if ($this->length($pw, 5, 30)) {
-            // Ajoute un message d'erreur si la longueur est incorrecte
             return array_push($this->errorArray, Constant::$passwordLength);
         }
     }
@@ -108,38 +115,29 @@ class Account {
         $stmt->execute();
 
         // Vérifie si l'email est déjà utilisé
-        $count = $stmt->rowCount();
-        if ($count > 0) {
-            // Ajoute un message d'erreur si l'email est déjà utilisé
+        if ($stmt->rowCount() > 0) {
             return array_push($this->errorArray, Constant::$emailInUse);
         }
 
         // Vérifie si le format de l'email est valide
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Ajoute un message d'erreur si le format est incorrect
             return array_push($this->errorArray, Constant::$emailInvalid);
         }
     }
 
     // Génère un nom d'utilisateur à partir du prénom et du nom
     public function generateUsername($fn, $ln) {
-        // Vérifie que les champs prénom et nom ne sont pas vides
         if (!empty($fn) && !empty($ln)) {
-            // Vérifie si les validations de prénom et de nom sont passées
             if (!in_array(Constant::$firstNameCharacters, $this->errorArray) && !in_array(Constant::$lastNameCharacters, $this->errorArray)) {
-                // Crée un nom d'utilisateur en concaténant prénom et nom en minuscules
                 $username = strtolower($fn . $ln);
 
-                // Vérifie si ce nom d'utilisateur existe déjà
                 if ($this->checkUsernameExist($username)) {
-                    // Ajoute un nombre aléatoire pour générer un nom unique
                     $screenRand = rand();
                     $userLink = $username . $screenRand;
                 } else {
                     $userLink = $username;
                 }
 
-                // Retourne le nom d'utilisateur généré
                 return $userLink;
             }
         }
@@ -147,26 +145,21 @@ class Account {
 
     // Vérifie si un nom d'utilisateur existe déjà dans la base de données
     private function checkUsernameExist($username) {
-        // Prépare une requête SQL pour vérifier l'existence
         $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `username` = :username");
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
 
-        // Retourne `true` si le nom d'utilisateur existe, sinon `false`
         return $stmt->rowCount() > 0;
     }
 
     // Vérifie si la longueur d'une chaîne respecte les limites spécifiées
     private function length($input, $min, $max) {
-        // Retourne vrai si la longueur est inférieure ou supérieure aux limites
         return strlen($input) < $min || strlen($input) > $max;
     }
 
     // Retourne un message d'erreur HTML si l'erreur existe dans le tableau des erreurs
     public function getErrorMessage($error) {
-        // Vérifie si l'erreur est dans le tableau des erreurs
         if (in_array($error, $this->errorArray)) {
-            // Retourne un message HTML formaté
             return '<span class="errorMessage">' . $error . '</span>';
         }
     }
