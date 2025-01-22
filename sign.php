@@ -5,29 +5,51 @@ require_once "backend/initialize.php";
 
 // Vérifie si la requête reçue est de type POST
 if (is_post_request()) {
-    // Vérifie si le champ 'firstName' est présent et non vide
-    if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
-        // Nettoie et assainit les données du formulaire
-        $fname = FormSanitizer::formSanitizerName($_POST['firstName']);  // Prénom, après nettoyage et validation
-        $lname = FormSanitizer::formSanitizerName($_POST['lastName']);   // Nom, après nettoyage et validation
-        $email = FormSanitizer::formSanitizerString($_POST['email']);    // Email, après nettoyage et validation
-        $password = FormSanitizer::formSanitizerString($_POST['pass']);  // Mot de passe, après nettoyage
-        $password2 = FormSanitizer::formSanitizerString($_POST['pass2']); // Confirmation du mot de passe, après nettoyage
 
-        // Génère un nom d'utilisateur unique à partir du prénom et du nom
+    // Vérifie si le champ 'firstName' est présent dans le formulaire et qu'il n'est pas vide
+    if (isset($_POST['firstName']) && !empty($_POST['firstName'])) {
+
+        // Nettoie et assainit les données saisies dans le formulaire
+        // Le prénom est assaini et validé pour ne contenir que des caractères valides
+        $fname = FormSanitizer::formSanitizerName($_POST['firstName']);
+        // Le nom est également assaini et validé
+        $lname = FormSanitizer::formSanitizerName($_POST['lastName']);
+        // L'email est nettoyé pour supprimer tout caractère ou espace indésirable
+        $email = FormSanitizer::formSanitizerString($_POST['email']);
+        // Le mot de passe est nettoyé (sans vérification de sa sécurité à ce stade)
+        $password = FormSanitizer::formSanitizerString($_POST['pass']);
+        // La confirmation du mot de passe est également nettoyée
+        $password2 = FormSanitizer::formSanitizerString($_POST['pass2']);
+
+        // Génère un nom d'utilisateur unique à partir du prénom et du nom de famille
+        // Cette méthode vérifie si le nom généré est déjà utilisé et, si nécessaire, ajoute un suffixe unique
         $username = $account->generateUsername($fname, $lname);
 
-        // Appelle la méthode pour enregistrer un nouveau compte utilisateur avec les données fournies
+        // Tente d'enregistrer un nouveau compte utilisateur avec les données fournies
+        // La méthode `register` effectue des validations (prénom, nom, email, mots de passe)
+        // et insère les données dans la base si aucune erreur n'est détectée
         $wasSuccessfull = $account->register($fname, $lname, $username, $email, $password, $password2);
 
-        // Vérifie si l'enregistrement s'est bien déroulé
+        // Vérifie si l'enregistrement a été effectué avec succès
         if ($wasSuccessfull) {
-            // Traite le succès (par exemple, redirige l'utilisateur ou affiche un message de confirmation)
-            //$wasSuccessfull;
-            echo "Data was inserted successfully";
+            // Si l'enregistrement est réussi :
+            // - Renouvelle l'ID de session pour des raisons de sécurité
+            session_regenerate_id();
+
+            // Stocke l'identifiant de l'utilisateur connecté dans la session
+            $_SESSION['userLoggedIn'] = $wasSuccessfull;
+
+            // Si l'utilisateur a coché "Se souvenir de moi", enregistre cette préférence dans la session
+            if (isset($_POST['remember'])) {
+                $_SESSION['rememberMe'] = $_POST['remember'];
+            }
+
+            // Redirige l'utilisateur vers une page de vérification (ou autre action post-enregistrement)
+            redirect_to("verification");
         }
     }
 }
+
 
 
 
