@@ -16,8 +16,8 @@
                 <h2 class="middle-heading">Ca se passe ici !</h2>
                 <h5>Rejoins JOBBER aujourd'hui !</h5>
                 <div class="s-in-wrapper">
-                    <a href="sign.php" class="btn-link sign-up-btn">S'inscrire</a>
-                    <a href="login.php" class="btn-link log-in-btn">Se connecter</a>
+                    <a href="sign" class="btn-link sign-up-btn">S'inscrire</a>
+                    <a href="login" class="btn-link log-in-btn">Se connecter</a>
                 </div>
             </div>
         </div>

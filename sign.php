@@ -104,7 +104,7 @@ if (is_post_request()) {
             </form>
         </div>
         <footer class="form-footer">
-            <p>Déjà inscrit ? <a href="login.php">Se connecter</a></p>
+            <p>Déjà inscrit ? <a href="login">Se connecter</a></p>
         </footer>
     </div>
 </section>
