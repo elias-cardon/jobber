@@ -15,6 +15,8 @@ if (isset($_SESSION['userLoggedIn'])) {
     // Utilise la classe de gestion des utilisateurs ($loadFromUser) pour récupérer les données complètes de l'utilisateur
     // La méthode `userData()` va chercher en base de données les informations associées à l'ID utilisateur
     $user = $loadFromUser->userData($user_id);
+} else {
+    redirect_to(url_for('index'));
 }
 
 ?>
